@@ -1,12 +1,15 @@
-<h2 align="center">
-    <a href="https://runlocal.ai"><img src="./images/large-logo.png" width="300"></a>
-    <div align="center" style="margin-top: 20px; margin-bottom: 20px;">
-        <a href="https://runlocal.ai" style="text-decoration: none;">Website</a> |
-        <a href="https://runlocal.ai#contact" style="text-decoration: none;">Contact</a> |
-        <a href="https://discord.gg/y9EzZEkwbR" style="text-decoration: none;">Discord</a> |
-        <a href="https://x.com/Neuralize_AI" style="text-decoration: none;">Twitter</a>
-    </div>
-</h2>
+<div align="center">
+    <a href="https://runlocal.ai">
+        <img src="./images/large-logo.png" width="300" style="border: none;">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="https://runlocal.ai" style="text-decoration: none;">Website</a> |
+    <a href="https://runlocal.ai#contact" style="text-decoration: none;">Contact</a> |
+    <a href="https://discord.gg/y9EzZEkwbR" style="text-decoration: none;">Discord</a> |
+    <a href="https://x.com/Neuralize_AI" style="text-decoration: none;">Twitter</a>
+</div>
 
 <h3 align="center">
    Bria-RMBG-1.4 Conversion Script (CoreML)
