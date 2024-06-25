@@ -1,38 +1,51 @@
-## CoreML Conversion Script For BriaRMBG Background Removal
+<h2 align="center">
+    <a href="https://runlocal.ai"><img src="./images/large-logo.png" width="300"></a>
+    <div align="center" style="margin-top: 20px; margin-bottom: 20px;">
+        <a href="https://runlocal.ai" style="text-decoration: none;">Website</a> |
+        <a href="https://runlocal.ai#contact" style="text-decoration: none;">Contact</a> |
+        <a href="https://discord.gg/y9EzZEkwbR" style="text-decoration: none;">Discord</a> |
+        <a href="https://x.com/Neuralize_AI" style="text-decoration: none;">Twitter</a>
+    </div>
+</h2>
 
-### First, clone this directory
+<h3 align="center">
+   Bria-RMBG-1.4 Conversion Script (CoreML)
+</h3>
+
+## :bulb: Introduction
+This repo contains a script to convert [Bria-RMBG-1.4](https://huggingface.co/briaai/RMBG-1.4), which is a background removal AI model developed by [Bria AI](https://bria.ai/), from PyTorch to CoreML. After you have converted the model with this script, you can use it in our [Swift Demo App](https://github.com/neuralize-ai/demo-apple-bria-rmbg-swift-app) on an iPhone/iPad.
+
+## :hammer_and_wrench: Setup
+Clone this repository:
 ```
 git clone https://github.com/neuralize-ai/demo-apple-bria-rmbg.git
 ```
 
-Next, create a conda environment from the `environment.yaml` file
+Then, create a conda environment from the `environment.yaml` file:
 ```
 conda env create -f environment.yaml && conda activate demo-apple-bria-rmbg-conversion
 ```
 
 
-### Next, clone the 'RMBG-1.4'model repo from Hugging Face into this repo
+Then, clone 'Bria-RMBG-1.4' from [this Hugging Face repo](https://huggingface.co/briaai/RMBG-1.4):
 ```
 cd demo-apple-bria-rmbg && git clone https://huggingface.co/briaai/RMBG-1.4
 ```
 
-
-### Now we need to slightly modify the model repo
-
-Inside
+Then, modify the Hugging Face repo, by replacing `RMBG-1.4/briarmbg.py:5` 
 ```
-RMBG-1.4/briarmbg.py:5
+from .MyConfig import RMBGConfig
 ```
-
-Comment out and add this line. We need to do this because the model repo is written to expect it to be run as its own repo, but we are importing as one of our modules, so relative imports cannot be used
+with
 ```
-# from .MyConfig import RMBGConfig
 from MyConfig import RMBGConfig
 ```
 
-Now, modify the `nn.Module` because it contains many outputs that we do not use
 
-In `RMBG-1.4/briarmbg.py:440`, comment out some lines as shown below
+
+ This is needed because the Hugging Face repo expects to be run as its own repo, but we are importing it as a modules, so relative imports cannot be used.
+
+Then, modify `nn.Module` in `RMBG-1.4/briarmbg.py:440`, as below:
 ```
 d1 = self.side1(hx1d)
 d1 = _upsample_like(d1,x)
@@ -57,11 +70,21 @@ return F.sigmoid(d1)
 ```
 
 
-### Convert with `coremltools`
-Now we can do `python convert.py`
+## :running: Convert Model 
+To run the script with `coremltools`, which is installed in the conda environment, run:
+```
+python convert.py
+```
 
-This will create a CoreML file at the source root called `bria-rmbg-coreml.mlpackage`
+This will create a `bria-rmbg-coreml.mlpackage` CoreML model file.
 
 
-### Disclaimers
-This model is traced using the dimensions of the example image, which means only images with the same dimensions can be used. The right way to do this is to only trace the `forward` method, and not the `preprocess` and `postprocess` models. But this is just for demo purposes.
+## :warning: Disclaimer
+This model is traced/converted using the dimensions of the example image, which means **only images with the same dimensions (1405, 933, 3) can be used with the converted model**. 
+
+If you want to process arbitrary image dimensions, then you would need to remove the  `preprocess` and `postprocess` functions from the `forward` method prior to tracing/converting the model. 
+
+We have not done this for the sake of time, but we may get round to it. As always, though, please feel free to make a pull request if you'd like to do it yourself (and don't forget to join our [Discord)](https://discord.gg/y9EzZEkwbR))! 
+
+## :scroll: License
+Bria AI have a custom Hugging Face model license agreement for non-commercial use. Please refer to [their license](https://bria.ai/bria-huggingface-model-license-agreement/) before running this script and/or using the converted model. 
