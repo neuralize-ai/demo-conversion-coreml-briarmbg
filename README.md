@@ -21,7 +21,7 @@ This repo contains a script to convert [Bria-RMBG-1.4](https://huggingface.co/br
 ## :hammer_and_wrench: Setup
 Clone this repository:
 ```
-git clone https://github.com/neuralize-ai/demo-apple-bria-rmbg.git
+git clone https://github.com/neuralize-ai/demo-conversion-coreml-briarmbg
 ```
 
 Then, create a conda environment from the `environment.yaml` file:
