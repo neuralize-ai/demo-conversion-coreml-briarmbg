@@ -1,8 +1,8 @@
-## Conversion Script For BriaRMBG Background Removal
+## CoreML Conversion Script For BriaRMBG Background Removal
 
 ### First, clone this directory
 ```
-git clone xxxx
+git clone https://github.com/neuralize-ai/demo-apple-bria-rmbg.git
 ```
 
 Next, create a conda environment from the `environment.yaml` file
@@ -13,7 +13,7 @@ conda env create -f environment.yaml && conda activate demo-apple-bria-rmbg-conv
 
 ### Next, clone the 'RMBG-1.4'model repo from Hugging Face into this repo
 ```
-cd XXX && git clone https://huggingface.co/briaai/RMBG-1.4
+cd demo-apple-bria-rmbg && git clone https://huggingface.co/briaai/RMBG-1.4
 ```
 
 
