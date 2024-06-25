@@ -26,7 +26,7 @@ git clone https://github.com/neuralize-ai/demo-conversion-coreml-briarmbg
 
 Then, create a conda environment from the `environment.yaml` file:
 ```
-conda env create -f environment.yaml && conda activate demo-apple-bria-rmbg-conversion
+conda env create -f environment.yaml && conda activate demo-conversion-coreml-briarmbg
 ```
 
 
