@@ -82,12 +82,5 @@ python convert.py
 This will create a `bria-rmbg-coreml.mlpackage` CoreML model file.
 
 
-## :warning: Disclaimer
-This model is traced/converted using the dimensions of the example image, which means **only images with the same dimensions (1405, 933, 3) can be used with the converted model**. 
-
-If you want to process arbitrary image dimensions, then you would need to remove the  `preprocess` and `postprocess` functions from the `forward` method prior to tracing/converting the model. 
-
-We have not done this for the sake of time, but we may get round to it. As always, though, please feel free to make a pull request if you'd like to do it yourself (and don't forget to join our [Discord)](https://discord.gg/y9EzZEkwbR))! 
-
 ## :scroll: License
 Bria AI have a custom Hugging Face model license agreement for non-commercial use. Please refer to [their license](https://bria.ai/bria-huggingface-model-license-agreement/) before running this script and/or using the converted model. 
