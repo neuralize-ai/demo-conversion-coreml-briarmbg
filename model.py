@@ -22,16 +22,16 @@ class Wrapper(nn.Module):
 
         ma = torch.max(result)
         mi = torch.min(result)
-
         result = (result - mi) / (ma - mi)
-        im_array = (result * 255).permute(1, 2, 0)
-        im_array = torch.squeeze(im_array, dim=2)
+        im_array = (result * 255)
+        im_array = torch.unsqueeze(im_array, 0)
+        # im_array = torch.squeeze(im_array, dim=2)
         return im_array
 
 
     def forward(self, orig_im_pt: torch.Tensor):
-        model_input_size = [1405, 933]
-        im = self.preprocess_image(orig_im_pt, model_input_size)
-        result = self.model(im)
+        model_input_size = [1024, 1024]
+        # im = self.preprocess_image(orig_im_pt, model_input_size)
+        result = self.model(orig_im_pt)
         result_image = self.postprocess_image(result, model_input_size)
         return result_image
